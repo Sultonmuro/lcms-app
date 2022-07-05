@@ -12,9 +12,9 @@ import javax.validation.constraints.NotNull;
 @Data
 @Builder
 public class GroupDto {
-    @NotNull(message = "Id ")
+    @NotNull(message = " Id null bolishi mumkin emas! ")
     private Long id;
-    @NotNull(message = "")
+    @NotNull(message = "name cannot be null!")
     private String name;
     private Long courseId;
     private Long filialId;

@@ -28,4 +28,20 @@ return ResponseEntity.status(apiResponse.isSuccess() ? 201 : 409).body(apiRespon
     ApiResponse<Group> one = groupService.getOne(id);
     return ResponseEntity.ok(one);
   }
+  @DeleteMapping("/{id}")
+  public ResponseEntity<?> delete(@PathVariable Long id){
+    ApiResponse delete = groupService.delete(id);
+
+    return  ResponseEntity.status(delete.isSuccess() ? 200:404).body(delete);
+  }
+@PutMapping("/{id}")
+  public ResponseEntity<?> update(@PathVariable Long id,@Valid @RequestBody GroupDto groupDto){
+  ApiResponse update = groupService.update(id, groupDto);
+  return ResponseEntity.status(update.isSuccess() ?202 : 404).body(update);
+}
+@GetMapping
+  public ResponseEntity<?> findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "") String search, @RequestParam(value = "filial", defaultValue = "") String filialName, @RequestParam(value = "course", defaultValue = "") String courseName ){
+  ApiResponse<?> all = groupService.findAll(page, size, search, filialName, courseName);
+  return ResponseEntity.ok(all);
+}
 }
